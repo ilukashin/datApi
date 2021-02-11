@@ -1,12 +1,14 @@
 
 name: jira_projects
 
+shedule: daily
+
 source:
   request:
-    url: https://gregoryawesoman.atlassian.net/rest/api/2/project
+    url: https://jirahost.atlassian.net/rest/api/2/project
     method: GET
     headers: 
-      Authorization: Basic cmF5Y291cGVyQGdtYWlsLmNvbTpOeFBxNHBXUWFiVTJ0c293QUxZSEUwQUY=
+      Authorization: Basic <your code>
       Content-Type: application/json
 
   result_parser:

@@ -1,12 +1,14 @@
 
 name: example_jira
 
+shadule: hourly
+
 source:
   request:
-    url: https://gregoryawesoman.atlassian.net/rest/api/2/search?jql=project=ELK-Test2
+    url: https://jirahost.atlassian.net/rest/api/2/search?jql=project=ELK-Test2
     method: GET
     headers: 
-      Authorization: Basic cmF5Y291cGVyQGdtYWlsLmNvbTpOeFBxNHBXUWFiVTJ0c293QUxZSEUwQUY=
+      Authorization: Basic <your code>
       Content-Type: application/json
 
   result_parser:

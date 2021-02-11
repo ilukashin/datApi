@@ -1,2 +1,4 @@
 .byebug_history
 .env
+
+jobs/*.yml
