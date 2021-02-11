@@ -1,4 +1,4 @@
-# heading
+# datApi
 
 This template-tool provide runners to consume data from any API, parse it with your rules and store where you want.
 
@@ -8,6 +8,8 @@ Clone this repository to directory you want.
 Then run `bundle install`.
 
 ## Getting started
+
+Create jobs in __jobs__ dir in _.yml_.
 
 After all run
 `whenever --update-crontab`
@@ -137,7 +139,7 @@ class ElasticsearchConnector
 
 end
 ```
-The main idea to keep data in your store always synced with API provider, so your `save` method must save new records or update, if record already exists with provided `primary_key`.
+The main idea to keep data in your store always synced with API provider, so your `save` method must save new records or update if record already exists with provided `primary_key`.
 
 
 ## TODO ideas
