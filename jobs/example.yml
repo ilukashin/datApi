@@ -21,6 +21,7 @@ source:
         - project: fields.project.name
         - project_key: fields.project.key
         - test_nil: fields.project.undefined_key
+        - priority: fields.priority.name
 
 
 #TODO: reserved for future

@@ -15,9 +15,13 @@ class MongoConnector
   end
 
   def save(data)
+    save_or_update(data)
+  end
+
+  private
+
+  def save_or_update(data)
     result = collection.find_one_and_update( { primary_key.to_sym => data[primary_key] } , data, { upsert: true } )
-    
-    puts "Saved data with PK: #{primary_key} - #{data[primary_key]}"
   end
   
 end

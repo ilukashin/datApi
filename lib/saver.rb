@@ -12,6 +12,8 @@ class Saver
 
   def save(data)
     connector.save(data)
+
+    puts "Saved data with PK: #{params['primary_key']} - #{data[params['primary_key']]}"
   end
 
   private

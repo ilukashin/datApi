@@ -23,7 +23,7 @@ class Job
 
     parsed_data.each do |data|
       data_to_save = worker.execute(data)
-      result = saver.save(data_to_save)
+      saver.save(data_to_save)
     end 
     puts "Finished job: #{job_name}"
   end
