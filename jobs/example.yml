@@ -1,0 +1,37 @@
+
+name: example_jira
+
+source:
+  request:
+    url: https://gregoryawesoman.atlassian.net/rest/api/2/search?jql=project=ELK-Test2
+    method: GET
+    headers: 
+      Authorization: Basic cmF5Y291cGVyQGdtYWlsLmNvbTpOeFBxNHBXUWFiVTJ0c293QUxZSEUwQUY=
+      Content-Type: application/json
+
+  result_parser:
+    root_element: issues
+
+    mapping:
+      primary_key: &primary_key id
+      keys:
+        - key
+        - issuetype: fields.issuetype.name
+        - description: fields.issuetype.description
+        - project: fields.project.name
+        - project_key: fields.project.key
+        - test_nil: fields.project.undefined_key
+
+
+#TODO: reserved for future
+work:
+  - do something
+
+
+save:
+  name: my_mongo
+  db: JIRA
+  table: bugs
+  primary_key: *primary_key
+
+

@@ -1,0 +1,13 @@
+
+my_mongo:
+  connector: mongo
+  url: localhost:27017
+
+my_sql:
+  connector: my_sql
+  url: localhost:3333
+
+my_elastic:
+  connector: my_elastic
+  url: localhost:9200
+
