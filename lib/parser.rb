@@ -13,7 +13,6 @@ class Parser
   end
 
   def parse(data)
-    # byebug
     data_root = root && !root.eql?('.') ? data[root] : data
 
     puts "Start parsing #{data_root.count} elements."
