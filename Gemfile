@@ -13,3 +13,7 @@ gem 'json'
 
 # for saving into db
 gem 'mongo'
+
+# tasks and automation
+gem 'rake'
+gem 'whenever'
