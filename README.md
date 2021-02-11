@@ -45,6 +45,9 @@ save:
   table: projects
   primary_key: *primary_key
 ```
+###### shedule
+supports 2 values - `daily` or `hourly`
+
 ###### source:
 Requests support any method, but payload do not realized.
 In `headers` key you can pass any headers in key-value style.

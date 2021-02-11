@@ -10,11 +10,11 @@ class App
     @jobs_configs = Dir[File.join('jobs', '**', '*.yml')].map { |f| YAML.load(File.read(f)) }
     @db_config = YAML.load(File.read('./config/database.yml'))
 
-    @filtered_configs = jobs_configs.select { |config| config['shedule'].eql?(ARGV[0])
+    @filtered_configs = jobs_configs.select { |config| config['shedule'].eql?(ARGV[0]) }
   end
 
   def run
-    jobs_configs.each do |config|
+    filtered_configs.each do |config|
       Job.new(config, db_config).do_job
     end
   end
