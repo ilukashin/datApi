@@ -4,21 +4,22 @@ This template-tool provide runners to consume data from any API, parse it with y
 
 ## Installation
 Clone this repository to directory you want.
-
 Then run `bundle install`.
 
 ## Getting started
-
 Create jobs in __jobs__ dir in _.yml_.
 
 After all run
 `whenever --update-crontab`
-to write your jobs to crontab
+to write your jobs to crontab.
+Also you can simply run rake tasks in Jenknins or anywhere you want.
 
 ## Jobs explanation
 You can simply configure your tasks with _.yml_.
 ```yml
 name: jira_projects
+
+shedule: hourly
 
 source:
   request:
@@ -45,8 +46,8 @@ save:
   table: projects
   primary_key: *primary_key
 ```
-###### shedule
-supports 2 values - `daily` or `hourly`
+###### shedule:
+by default supports 2 values - `daily` or `hourly`, but you can [customize it](#automation).
 
 ###### source:
 Requests support any method, but payload do not realized.
@@ -110,7 +111,7 @@ Also in your __config/database.yml__ stored global settings for DB connections.
 ## DB connectors
 
 In your job file
-```yaml
+```yml
 save:
   name: my_mongo
   db: JIRA
@@ -144,8 +145,24 @@ end
 ```
 The main idea to keep data in your store always synced with API provider, so your `save` method must save new records or update if record already exists with provided `primary_key`.
 
+## <a name="automation"></a>Automation
+Default rake tasks have 2 options - daily and hourly. But you can add any custom. For example in `Rakefile`:
+```ruby
+task :custom do
+  ruby 'main.rb', 'custom'
+end
+```
+and in your jobs set config
+```yml
+shedule: custom
+```
+After all settings run
+`whenever --update-crontab`
+to write your jobs to crontab.
+Also you can simply run rake tasks in Jenknins or anywhere you want.
 
 ## TODO ideas
+* passing params in jobs config and process it with ERB
 * realize worker that can process data before saving
 * tool can make SQL request (not sure it necessary )
 * simple web-view to check jobs statuses and logs
