@@ -17,3 +17,5 @@ gem 'mongo'
 # tasks and automation
 gem 'rake'
 gem 'whenever'
+
+gem 'byebug'

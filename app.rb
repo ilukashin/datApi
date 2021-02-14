@@ -1,5 +1,6 @@
 require 'json'
 require 'yaml'
+require 'byebug'
 
 Dir[File.join('.', 'lib', '**', '*.rb')].each { |f| require f }
 
@@ -15,7 +16,11 @@ class App
 
   def run
     filtered_configs.each do |config|
+      puts "\n#{Time.now.strftime("%H:%M:%S %Y-%m-%d")} --- Start job: #{config['name'] } --- \n"
+
       Job.new(config, db_config).do_job
+
+      puts "\n#{Time.now.strftime("%H:%M:%S %Y-%m-%d")} --- Finish job: #{config['name'] } --- \n\n"
     end
   end
 
