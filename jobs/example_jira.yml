@@ -10,6 +10,14 @@ source:
     headers: 
       Authorization: Basic <your code>
       Content-Type: application/json
+      params:
+        maxResults: &step 1000
+        start_at: 0
+
+    repeat:
+      on_param: start_at
+      break_point: total
+      step: *step
 
   result_parser:
     root_element: issues

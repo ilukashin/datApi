@@ -15,15 +15,13 @@ class Parser
   def parse(data)
     data_root = root && !root.eql?('.') ? data[root] : data
 
-    puts "Start parsing #{data_root.count} elements."
-
     data_root.each do |data_element|
       parsed_element = { primary_key => data_element[primary_key] }
       parse_keys(data_element, parsed_element)
       result << parsed_element
     end
-
-    puts 'All data parsed!'
+    
+    puts "Parsed #{data_root.count} elements."
     result
   end
 

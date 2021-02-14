@@ -8,10 +8,8 @@ class Job
   end
 
   def do_job
-    data = requester.make_request
-    return unless data
-
-    parsed_data = parser.parse(data)
+    parsed_data = requester.make_request(parser)
+    
     parsed_data.each do |data|
       data_to_save = worker.execute(data)
       saver.save(data_to_save)
