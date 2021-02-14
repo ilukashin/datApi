@@ -1,4 +1,6 @@
-set :output, "/log/cron_log.log"
+# frozen_string_literal: true
+
+set :output, '/log/cron_log.log'
 
 every 1.day, at: '2:30 am' do
   rake :daily_job

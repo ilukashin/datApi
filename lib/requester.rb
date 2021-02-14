@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rest-client'
 require 'json'
 
@@ -17,7 +19,7 @@ class Requester
   end
 
   def make_request(parser)
-    loop do 
+    loop do
       data = execute
       self.result += parser.parse(data) if data
       break unless repeat
@@ -34,13 +36,12 @@ class Requester
     response = RestClient.send(method, url, headers)
     self.last_result = JSON.parse(response.body)
 
-    return last_result
-
+    last_result
   rescue RestClient::Exception => e
-    puts "Error: #{e.class} #{e.message}" , "Url: #{url}"
-    return nil
+    puts "Error: #{e.class} #{e.message}", "Url: #{url}"
+    nil
   end
-  
+
   def repeat
     return false unless last_result
     return false unless params['repeat']
@@ -67,5 +68,4 @@ class Requester
   def current_repeat_param
     headers['params'][repeat_param]
   end
-
 end

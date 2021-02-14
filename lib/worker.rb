@@ -1,5 +1,6 @@
-class Worker
+# frozen_string_literal: true
 
+class Worker
   def initialize(params)
     @params = params
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mongo'
 
 class MongoConnector
@@ -10,7 +12,7 @@ class MongoConnector
 
     @primary_key = params['primary_key']
 
-    @client = Mongo::Client.new([ url ], :database => db )
+    @client = Mongo::Client.new([url], database: db)
     @collection = client[table.to_sym]
   end
 
@@ -21,7 +23,6 @@ class MongoConnector
   private
 
   def save_or_update(data)
-    result = collection.find_one_and_update( { primary_key.to_sym => data[primary_key] } , data, { upsert: true } )
+    collection.find_one_and_update({ primary_key.to_sym => data[primary_key] }, data, { upsert: true })
   end
-  
 end

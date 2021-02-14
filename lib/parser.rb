@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Parser
   attr_reader :rule, :root, :mapping, :primary_key, :mapping_keys
   attr_accessor :result
@@ -20,7 +22,7 @@ class Parser
       parse_keys(data_element, parsed_element)
       result << parsed_element
     end
-    
+
     puts "Parsed #{data_root.count} elements."
     result
   end
@@ -48,7 +50,7 @@ class Parser
     return nil unless data
 
     return data if nested_value_path.empty?
+
     take_nested_value(data, nested_value_path)
   end
-
 end

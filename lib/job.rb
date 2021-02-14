@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Job
   attr_reader :config, :db_config
 
@@ -9,11 +11,11 @@ class Job
 
   def do_job
     parsed_data = requester.make_request(parser)
-    
+
     parsed_data.each do |data|
       data_to_save = worker.execute(data)
       saver.save(data_to_save)
-    end 
+    end
   end
 
   private

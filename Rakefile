@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 task :daily_job do
   ruby 'main.rb', 'daily'
