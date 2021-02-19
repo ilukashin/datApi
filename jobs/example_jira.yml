@@ -14,6 +14,8 @@ source:
         maxResults: &step 1000
         start_at: 0
 
+    # sometimes API have limit in response
+    # if this block exists, request will be repeated untill params[start_at] < params[total]
     repeat:
       on_param: start_at
       break_point: total
@@ -34,9 +36,10 @@ source:
         - priority: fields.priority.name
 
 
-#TODO: reserved for future
-work:
-  - do something
+# list of works
+works:
+  # calling eponymous class from lib/workers
+  - example_worker
 
 
 save:

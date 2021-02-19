@@ -38,7 +38,7 @@ source:
         - name
 
 work:
-  - do something
+  - example_worker
 
 save:
   name: my_mongo
@@ -79,7 +79,6 @@ In this approach you must set it to
 ```yml
   root_element: issues
 ```
-
 If your JSON return array, you can set `root_element` to `'.'` or even delete this key.
 
 `primary_key` is the key you need to check, if record already exists in your database.
@@ -99,10 +98,10 @@ After this you will get your parsed data in Ruby like
 ```ruby
 [{ 'id' => '1', 'type' => 'record', 'name' => 'first'}, ...]
 ```
-
-
 ###### work:
-Reserved for future.
+Calling selected classes from __lib/workers__ on each record you get after parsing.
+So you can do your math, enrich you data or anything you want.
+When you writing your workers*.rb, be sure you are using keys you are mapped before.
 ###### save:
 Settings for database name and collection.
 Also in your __config/database.yml__ stored global settings for DB connections.

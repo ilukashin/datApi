@@ -29,7 +29,7 @@ class Job
   end
 
   def worker
-    Worker.new(config['work'])
+    MainWorker.new(config['works'])
   end
 
   def saver
