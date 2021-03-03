@@ -1,6 +1,7 @@
 # datApi
 
-This template-tool provide runners to consume data from any API, parse it with your rules and store where you want.
+This simple template-tool provide runners to do [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load) jobs.
+Consume data from any API, parse it with your rules and store where you want.
 
 ## Installation
 Clone this repository to directory you want.
@@ -47,7 +48,7 @@ save:
   primary_key: *primary_key
 ```
 ###### shedule:
-by default supports 2 values - `daily` or `hourly`, but you can [customize it](#automation).
+name of rake task ([explanation](#automation)).
 
 ###### source:
 Requests support any method, but payload do not realized.
@@ -145,13 +146,20 @@ end
 The main idea to keep data in your store always synced with API provider, so your `save` method must save new records or update if record already exists with provided `primary_key`.
 
 ## <a name="automation"></a>Automation
-Default rake tasks have 2 options - daily and hourly. But you can add any custom. For example in `Rakefile`:
+Default rake runs dynamicaly. 
+For example: `rake daily`
+will run all jobs with
+```yaml
+shedule: daily
+```
+
+But you can add any custom. For example in `Rakefile`:
 ```ruby
 task :custom do
   ruby 'main.rb', 'custom'
 end
 ```
-and in your jobs set config
+and in your jobs set option
 ```yml
 shedule: custom
 ```
@@ -162,6 +170,5 @@ Also you can simply run rake tasks in Jenknins or anywhere you want.
 
 ## TODO ideas
 * passing params in jobs config and process it with ERB
-* realize worker that can process data before saving
 * tool can make SQL request (not sure it necessary )
 * simple web-view to check jobs statuses and logs
