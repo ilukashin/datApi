@@ -12,6 +12,8 @@ class MongoConnector
 
     @primary_key = params['primary_key']
 
+    Mongo::Logger.logger.level = Logger::FATAL
+
     @client = Mongo::Client.new([url], database: db)
     @collection = client[table.to_sym]
   end
