@@ -8,7 +8,7 @@ class MainWorker
     @workers = {}
   end
 
-  def execute(data)
+  def transform(data)
     params.each { |worker_name| workers(worker_name).run(data) }
 
     data

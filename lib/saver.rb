@@ -12,7 +12,7 @@ class Saver
     @connector = init_connector
   end
 
-  def save(data)
+  def load(data)
     connector.save(data)
 
     puts "Saved data with PK: #{params['primary_key']} - #{data[params['primary_key']]}"

@@ -18,10 +18,12 @@ class Requester
     @result = []
   end
 
-  def make_request(parser)
+  def extract(parser)
     loop do
       data = execute
-      self.result += parser.parse(data) if data
+      parsed_data = parser.parse(data) if data
+      yield(parsed_data) if block_given?
+
       break unless repeat
     end
 

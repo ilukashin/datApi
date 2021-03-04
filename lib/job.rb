@@ -10,11 +10,8 @@ class Job
   end
 
   def do_job
-    parsed_data = requester.make_request(parser)
-
-    parsed_data.each do |data|
-      data_to_save = worker.execute(data)
-      saver.save(data_to_save)
+    requester.extract(parser) do |parsed_data|
+      parsed_data.each { |data| saver.load(worker.transform(data)) }      
     end
   end
 
