@@ -21,18 +21,18 @@ class Job
   private
 
   def requester
-    Requester.new(config['source']['request'])
+    @requester_obj ||= Requester.new(config['source']['request'])
   end
 
   def parser
-    Parser.new(config['source']['result_parser'])
+    @parser_obj ||= Parser.new(config['source']['result_parser'])
   end
 
   def worker
-    MainWorker.new(config['works'])
+    @worker_obj ||= MainWorker.new(config['works'])
   end
 
   def saver
-    Saver.new(config['save'], db_config)
+    @saver_obj ||= Saver.new(config['save'], db_config)
   end
 end
