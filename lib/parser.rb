@@ -2,7 +2,6 @@
 
 class Parser
   attr_reader :rule, :root, :mapping, :primary_key, :mapping_keys
-  attr_accessor :result
 
   def initialize(rule)
     @rule = rule
@@ -10,12 +9,12 @@ class Parser
     @mapping = rule['mapping']
     @primary_key = mapping['primary_key']
     @mapping_keys = mapping['keys']
-
-    @result = []
   end
 
   def parse(data)
     data_root = root && !root.eql?('.') ? data[root] : data
+
+    result = []
 
     data_root.each do |data_element|
       parsed_element = { primary_key => data_element[primary_key] }

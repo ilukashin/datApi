@@ -11,7 +11,7 @@ class Job
 
   def do_job
     requester.extract(parser) do |parsed_data|
-      parsed_data.each { |data| saver.load(worker.transform(data)) }      
+      parsed_data.each { |data| saver.load(worker.transform(data)) } if parsed_data
     end
   end
 
