@@ -12,12 +12,13 @@ source:
       Content-Type: application/json
       params:
         maxResults: &step 1000
-        start_at: 0
+        startAt: 0
+    timeout: 120
 
     # sometimes API have limit in response
-    # if this block exists, request will be repeated untill params[start_at] < params[total]
+    # if this block exists, request will be repeated untill params[startAt] < params[total]
     repeat:
-      on_param: start_at
+      on_param: startAt
       break_point: total
       step: *step
 

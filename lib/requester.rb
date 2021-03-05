@@ -13,6 +13,7 @@ class Requester
     @method = params['method'].downcase.to_sym
     @url = params['url']
     @headers = params['headers']
+    @timeout = params['timeout'] || 30
 
     @last_result
     @result = []
@@ -35,7 +36,7 @@ class Requester
   def execute
     puts method, url, headers.inspect
 
-    response = RestClient.send(method, url, headers)
+    response = RestClient::Request.execute( method: method, url: url, headers: headedrs, timeout: timeout)
     self.last_result = JSON.parse(response.body)
 
     last_result
