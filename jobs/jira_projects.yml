@@ -1,35 +1,29 @@
 
 name: jira_projects
 
-shedule: daily
+shedule: test
 
 source:
-  request:
-    url: https://jirahost.atlassian.net/rest/api/2/project
-    method: GET
-    headers: 
-      Authorization: Basic <your code>
-      Content-Type: application/json
+  database:
+    name: my_mongo
+    db: events
+    table: olympic
+    # string like query
+    query: |
+      { "Sex": "M" }
+    
+    # hash like query
+    # query:
+    #   ID: 1
 
-  result_parser:
-    root_element: '.'
-
-    mapping:
-      primary_key: &primary_key id
-      keys:
-        - key
-        - name
-
-
-#TODO: reserved for future
-work:
-  - do something
+works:
+  - example_worker
 
 
 save:
   name: my_mongo
-  db: JIRA
-  table: projects
-  primary_key: *primary_key
+  db: events
+  table: etl_copy
+  primary_key: _id
 
 

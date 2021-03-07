@@ -10,12 +10,29 @@ class Job
   end
 
   def do_job
+    request? ? request_work : db_work
+  end
+
+  private
+
+  def request?
+    config['source'].key?('request')
+  end
+
+  def request_work
     requester.extract(parser) do |parsed_data|
       parsed_data.each { |data| saver.load(worker.transform(data)) } if parsed_data
     end
   end
 
-  private
+  def db_work
+    selecter.select.each { |data| saver.load(worker.transform(data)) }
+  end
+
+  def selecter
+    @selecter_obj ||= Selecter.new(config['source']['database'], db_config)
+  end
+
 
   def requester
     @requester_obj ||= Requester.new(config['source']['request'])

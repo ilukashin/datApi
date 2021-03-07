@@ -22,6 +22,13 @@ class MongoConnector
     save_or_update(data)
   end
 
+  def select(query)
+    # WARNING. theres not expected any bad data for using .eval
+    query = eval(query) if query.is_a?(String)
+
+    collection.find(query)
+  end
+
   private
 
   def save_or_update(data)
