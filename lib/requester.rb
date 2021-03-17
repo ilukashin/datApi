@@ -4,7 +4,7 @@ require 'rest-client'
 require 'json'
 
 class Requester
-  attr_reader :params, :method, :url
+  attr_reader :params, :method, :url, :timeout
   attr_accessor :headers, :last_result, :result
 
   def initialize(params)
@@ -13,7 +13,7 @@ class Requester
     @method = params['method'].downcase.to_sym
     @url = params['url']
     @headers = params['headers']
-    @timeout = params['timeout'] || 30
+    @timeout = params['timeout'] || 120
 
     @last_result
     @result = []
