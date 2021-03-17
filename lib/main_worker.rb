@@ -9,7 +9,7 @@ class MainWorker
   end
 
   def transform(data)
-    params.each { |worker_name| workers(worker_name).run(data) }
+    params.each { |worker_name| workers(worker_name).run(data) } if params
 
     data
   end
