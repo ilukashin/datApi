@@ -36,7 +36,7 @@ class Requester
   def execute
     puts method, url, headers.inspect
 
-    response = RestClient::Request.execute( method: method, url: url, headers: headedrs, timeout: timeout)
+    response = RestClient::Request.execute( method: method, url: url, headers: headers, timeout: timeout)
     self.last_result = JSON.parse(response.body)
 
     last_result
